@@ -1,6 +1,7 @@
 package model;
 
-import generactive.storage.Storage;
+
+import storage.Storage;
 
 public class StockItem extends Item {
 

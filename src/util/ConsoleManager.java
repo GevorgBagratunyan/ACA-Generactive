@@ -1,9 +1,9 @@
 package util;
 
-import generactive.model.Group;
-import generactive.model.enums.Complexity;
-import generactive.model.enums.Resolution;
-import generactive.storage.Storage;
+import model.Group;
+import model.enums.Complexity;
+import model.enums.Resolution;
+import storage.Storage;
 
 import java.util.Scanner;
 import java.util.regex.Pattern;

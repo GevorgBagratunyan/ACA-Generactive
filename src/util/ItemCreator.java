@@ -1,9 +1,9 @@
 package util;
 
-import generactive.model.*;
-import generactive.model.enums.Complexity;
-import generactive.model.enums.Resolution;
-import generactive.storage.Storage;
+import model.*;
+import model.enums.Complexity;
+import model.enums.Resolution;
+import storage.Storage;
 
 public class ItemCreator {
 

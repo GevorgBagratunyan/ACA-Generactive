@@ -1,7 +1,8 @@
 package model;
 
-import generactive.model.enums.Complexity;
-import generactive.storage.Storage;
+
+import model.enums.Complexity;
+import storage.Storage;
 
 public class GenerativeItem extends Item {
 

@@ -1,6 +1,7 @@
 package model;
 
-import generactive.model.enums.Resolution;
+
+import model.enums.Resolution;
 
 public class Configuration {
 

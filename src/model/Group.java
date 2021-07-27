@@ -1,6 +1,7 @@
 package model;
 
-import generactive.storage.Storage;
+
+import storage.Storage;
 
 import java.util.ArrayList;
 import java.util.List;

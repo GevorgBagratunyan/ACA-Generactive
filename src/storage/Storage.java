@@ -1,7 +1,8 @@
 package storage;
 
-import generactive.model.Group;
-import generactive.model.Item;
+
+import model.Group;
+import model.Item;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,15 +1,14 @@
-import generactive.model.Basket;
-import generactive.model.Configuration;
-import generactive.model.GenerativeItem;
-import generactive.model.Group;
-import generactive.model.enums.Complexity;
-import generactive.model.enums.Resolution;
-import generactive.storage.Storage;
+import model.Basket;
+import model.Configuration;
+import model.GenerativeItem;
+import model.Group;
+import model.enums.Complexity;
+import model.enums.Resolution;
+import storage.Storage;
 
 
 public class Main {
     public static void main(String[] args) {
-
         Group g1 = new Group.GroupBuilder()
                 .id()
                 .groupName("Nature")
