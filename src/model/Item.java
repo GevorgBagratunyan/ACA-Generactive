@@ -5,7 +5,6 @@ public abstract class Item {
     private final String name;
     private final double basePrice;
     private final Group group;
-    private final Configuration configuration;
 
 
     public Item(int id, String name, double basePrice, Group group, Configuration configuration) {
@@ -13,7 +12,6 @@ public abstract class Item {
         this.basePrice = basePrice;
         this.group = group;
         this.id = id;
-        this.configuration = configuration;
     }
 
     public String getName() {
@@ -32,10 +30,6 @@ public abstract class Item {
         return id;
     }
 
-    public Configuration getConfiguration() {
-        return configuration;
-    }
-
     public void printContent() {
         System.out.println("    Item group : " + this.group.getName());
         System.out.println("    Item name : " + this.name);
@@ -43,5 +37,5 @@ public abstract class Item {
         System.out.println("    Item ID : " + this.id);
     }
 
-    public abstract double calculatePrice();
+    public abstract double calculatePrice(Configuration configuration);
 }

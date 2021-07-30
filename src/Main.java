@@ -1,10 +1,9 @@
-import model.Basket;
-import model.Configuration;
-import model.GenerativeItem;
-import model.Group;
+import model.*;
 import model.enums.Complexity;
 import model.enums.Resolution;
 import storage.Storage;
+
+import java.util.List;
 
 
 public class Main {
@@ -38,20 +37,31 @@ public class Main {
         g2.addItem(gi1);
 
         Basket basket = new Basket();
-        basket.addToBasket(gi1);
-        basket.addToBasket(gi1);
+        BasketItem basketItem = new BasketItem(gi1,cfg);
+        basket.add(basketItem);
+        basket.add(basketItem);
 
-        System.out.print("Final price of gi1 Item is : ");
-        basket.calculatePrice(gi1);
 
+        System.out.println("Price of added item : " + basketItem.getPrice());
         System.out.print("Total price of Items in basket : ");
         basket.totalPrice();
+        System.out.println();
 
         //This is for console input flow
         //You can uncomment this part of code below to use console input instead of static initialization
 //        ItemCreator.create();
 
+
+        //Testing Stream API methods in Storage
+        Item item = Storage.findItemByName("Visual1 in Forest");
+        System.out.println(item.getName());
         Storage.printAllGroups();
         Storage.printAllItems();
+        List<Group> subs = Storage.findSubGroupsByParent(g1);
+        System.out.println("subgroups in g1 : ");
+        subs.stream().forEach(e-> System.out.println(e.getName()));
+        List<Item> maxPriceItems = Storage.findHighestPricedItems();
+        System.out.println("Printing highest price items : ");
+        maxPriceItems.stream().forEach(e-> System.out.println(e.getName()));
     }
 }

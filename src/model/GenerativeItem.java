@@ -13,9 +13,10 @@ public class GenerativeItem extends Item {
         complexity = builder.complexity;
     }
 
-    public double calculatePrice() {
+    @Override
+    public double calculatePrice(Configuration configuration) {
         double price = this.getBasePrice();
-        double resolutionCoefficient = this.getConfiguration().getResolution().getResolutionCoefficient();
+        double resolutionCoefficient = configuration.getResolution().getResolutionCoefficient();
         double comp = complexity.getValue();
         return price * resolutionCoefficient * comp;
     }

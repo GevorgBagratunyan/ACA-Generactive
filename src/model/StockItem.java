@@ -9,9 +9,10 @@ public class StockItem extends Item {
         super(builder.id, builder.name, builder.price, builder.group, builder.configuration);
     }
 
-    public double calculatePrice() {
+    @Override
+    public double calculatePrice(Configuration configuration) {
         double price = this.getBasePrice();
-        double resolutionCoefficient = this.getConfiguration().getResolution().getResolutionCoefficient();
+        double resolutionCoefficient = configuration.getResolution().getResolutionCoefficient();
         return price * resolutionCoefficient;
     }
 

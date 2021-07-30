@@ -4,8 +4,8 @@ package storage;
 import model.Group;
 import model.Item;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Storage {
     private static int groupID = 0;
@@ -36,15 +36,59 @@ public class Storage {
         return ++itemID;
     }
 
+
+    //Methods below which using Stream API
+
     public static void printAllGroups() {
-        for (Map.Entry<Integer, Group> pair : GROUPS.entrySet()) {
-            pair.getValue().printContent();
-        }
+        GROUPS.entrySet().stream()
+                .forEach(e -> e.getValue().printContent());
+
     }
 
     public static void printAllItems() {
-        for (Map.Entry<Integer, Item> pair : ITEMS.entrySet()) {
-            pair.getValue().printContent();
+        ITEMS.entrySet().stream()
+                .forEach(e -> e.getValue().printContent());
+    }
+
+
+    public static Item findItemByName(String name) {
+        Optional<Item> item = ITEMS.entrySet().stream()
+                .filter(e -> e.getValue().getName().equals(name))
+                .map(Map.Entry::getValue)
+                .findFirst();
+
+        return item.orElse(null);
+    }
+
+    public static Group findGroupByName(String name) {
+        Optional<Group> group = GROUPS.entrySet().stream()
+                .filter(e -> e.getValue().getName().equals(name))
+                .map(Map.Entry::getValue)
+                .findFirst();
+
+        return group.orElse(null);
+    }
+
+    public static List<Group> findSubGroupsByParent(Group parent) {
+        List<Group> subGroups = GROUPS.entrySet().stream()
+                .filter(e -> e.getValue().equals(parent))
+                .map(Map.Entry::getValue)
+                .collect(Collectors.toList());
+        return subGroups;
+    }
+
+    public static List<Item> findHighestPricedItems() {
+        double maxPrice = Double.MIN_VALUE;
+        for(Map.Entry<Integer, Item> pair: ITEMS.entrySet()){
+            if(pair.getValue().getBasePrice()>maxPrice){
+                maxPrice=pair.getValue().getBasePrice();
+            }
         }
+        double finalMaxPrice = maxPrice;
+        List<Item> items = ITEMS.entrySet().stream()
+                .filter(e->e.getValue().getBasePrice()==finalMaxPrice)
+                .map(Map.Entry::getValue)
+                .collect(Collectors.toList());
+        return items;
     }
 }

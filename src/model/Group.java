@@ -33,6 +33,10 @@ public class Group {
         return parent;
     }
 
+    public List<Group> getSubGroups() {
+        return subGroups;
+    }
+
     public void addGroup(Group group) {
         subGroups.add(group);
     }
