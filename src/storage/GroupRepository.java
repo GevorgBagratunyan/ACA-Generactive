@@ -5,7 +5,7 @@ import model.Group;
 import java.util.List;
 import java.util.Optional;
 
-public class GroupRepository implements CRUD<Group>{
+public class GroupRepository implements CRUD<Group> {
 
     @Override
     public Group create(Group group) {

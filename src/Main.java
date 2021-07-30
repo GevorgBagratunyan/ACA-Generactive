@@ -38,7 +38,7 @@ public class Main {
         g2.addItem(gi1);
 
         Basket basket = new Basket();
-        BasketItem basketItem = new BasketItem(gi1,cfg);
+        BasketItem basketItem = new BasketItem(gi1, cfg);
         basket.add(basketItem);
         basket.add(basketItem);
 
@@ -55,14 +55,14 @@ public class Main {
 
         //Testing Stream API methods in Storage
         Optional<Item> item = Storage.findItemByName("Visual1 in Forest");
-        item.ifPresent(e-> System.out.println("Item in Storage found : " + e.getName()));
+        item.ifPresent(e -> System.out.println("Item in Storage found : " + e.getName()));
         Storage.printAllGroups();
         Storage.printAllItems();
         List<Group> subs = Storage.findSubGroupsByParent(g1);
         System.out.println("subgroups in g1 : ");
-        subs.stream().forEach(e-> System.out.println(e.getName()));
+        subs.stream().forEach(e -> System.out.println(e.getName()));
         List<Item> maxPriceItems = Storage.findHighestPricedItems();
         System.out.println("Printing highest price items : ");
-        maxPriceItems.stream().forEach(e-> System.out.println(e.getName()));
+        maxPriceItems.stream().forEach(e -> System.out.println(e.getName()));
     }
 }

@@ -68,7 +68,7 @@ public class Group {
     }
 
     public void printItems() {
-        for(Item item : items){
+        for (Item item : items) {
             item.printContent();
         }
     }

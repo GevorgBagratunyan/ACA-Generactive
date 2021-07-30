@@ -92,7 +92,7 @@ public class Storage {
 
     public static Optional<Group> findGroupByID(int id) {
         Optional<Group> group = GROUPS.entrySet().stream()
-                .filter(e-> e.getKey()==id)
+                .filter(e -> e.getKey() == id)
                 .map(Map.Entry::getValue)
                 .findFirst();
         return group;

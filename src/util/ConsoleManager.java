@@ -43,18 +43,18 @@ public class ConsoleManager {
         while (true) {
             int groupID;
             String id = SCANNER.nextLine();
-            if(id.isEmpty()) {
+            if (id.isEmpty()) {
                 break;
-            }else if(isValidNumeric(id)){
+            } else if (isValidNumeric(id)) {
                 groupID = Integer.parseInt(id);
-                if(groupID>0){
+                if (groupID > 0) {
                     Optional<Group> group = Storage.findGroupByID(groupID);
-                    if(group.isPresent()) {
+                    if (group.isPresent()) {
                         parentGroup = group.get();
                     }
                     break;
                 } else System.out.println("Negative digit not allowed");
-            }  else {
+            } else {
                 System.out.println("You entered wrong data, please input only digits");
             }
         }
@@ -113,7 +113,7 @@ public class ConsoleManager {
         userCommand = SCANNER.nextLine().toUpperCase();
     }
 
-    public static boolean isValidNumeric(String s){
+    public static boolean isValidNumeric(String s) {
         String regex = "[0-9]";
         Pattern pattern = Pattern.compile(regex);
         return pattern.matcher(s).matches();
