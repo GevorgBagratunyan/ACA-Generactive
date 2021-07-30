@@ -5,7 +5,7 @@ import model.Item;
 import java.util.List;
 import java.util.Optional;
 
-public class ItemRepository implements CRUD<Item>{
+public class ItemRepository implements CRUD<Item> {
 
     @Override
     public Item create(Item item) {
@@ -17,7 +17,7 @@ public class ItemRepository implements CRUD<Item>{
         return Storage.findItemById(id);
     }
 
-    //This will be implemented soon
+    //This will be implemented soon, after realizing REST requests
     @Override
     public Item update(int ID) {
         return null;
@@ -25,10 +25,10 @@ public class ItemRepository implements CRUD<Item>{
 
     @Override
     public Item delete(int id) {
-        return Storage.removeById(id);
+        return Storage.removeItemById(id);
     }
 
-    public static void printAllItems() {
+    public static void printAll() {
         Storage.printAllItems();
     }
 
@@ -39,6 +39,4 @@ public class ItemRepository implements CRUD<Item>{
     public static List<Item> getHighestPricedItems() {
         return Storage.findHighestPricedItems();
     }
-
-
 }

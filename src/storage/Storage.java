@@ -17,34 +17,15 @@ public class Storage {
 
     }
 
-    public static Group getByID(int id) {
-        return GROUPS.get(id);
-    }
-
-    public static void addGroup(Group group) {
-        GROUPS.put(group.getId(), group);
-    }
+    //ITEM methods_____________________________________________________________
 
     public static Item addItem(Item item) {
         ITEMS.put(item.getId(), item);
         return ITEMS.get(item.getId());
     }
 
-    public static int getNextGroupID() {
-        return ++groupID;
-    }
-
     public static int getNextItemID() {
         return ++itemID;
-    }
-
-
-    //Methods below which using Stream API
-
-    public static void printAllGroups() {
-        GROUPS.entrySet().stream()
-                .forEach(e -> e.getValue().printContent());
-
     }
 
     public static void printAllItems() {
@@ -63,31 +44,14 @@ public class Storage {
 
     public static Optional<Item> findItemById(int id) {
         Optional<Item> item = ITEMS.entrySet().stream()
-                .filter(e -> e.getValue().getId() == id)
+                .filter(e -> e.getKey() == id)
                 .map(Map.Entry::getValue)
                 .findFirst();
         return item;
     }
 
-    public static Item removeById(int id) {
+    public static Item removeItemById(int id) {
         return ITEMS.remove(id);
-    }
-
-    public static Group findGroupByName(String name) {
-        Optional<Group> group = GROUPS.entrySet().stream()
-                .filter(e -> e.getValue().getName().equals(name))
-                .map(Map.Entry::getValue)
-                .findFirst();
-
-        return group.orElse(null);
-    }
-
-    public static List<Group> findSubGroupsByParent(Group parent) {
-        List<Group> subGroups = GROUPS.entrySet().stream()
-                .filter(e -> e.getValue().equals(parent))
-                .map(Map.Entry::getValue)
-                .collect(Collectors.toList());
-        return subGroups;
     }
 
     public static List<Item> findHighestPricedItems() {
@@ -104,4 +68,53 @@ public class Storage {
                 .collect(Collectors.toList());
         return items;
     }
+
+    //GROUP methods_____________________________________________________________
+
+
+    public static int getNextGroupID() {
+        return ++groupID;
+    }
+
+    public static Group addGroup(Group group) {
+        GROUPS.put(group.getId(), group);
+        return GROUPS.get(group.getId());
+
+    }
+
+    public static Optional<Group> findGroupByName(String name) {
+        Optional<Group> group = GROUPS.entrySet().stream()
+                .filter(e -> e.getValue().getName().equals(name))
+                .map(Map.Entry::getValue)
+                .findFirst();
+        return group;
+    }
+
+    public static Optional<Group> findGroupByID(int id) {
+        Optional<Group> group = GROUPS.entrySet().stream()
+                .filter(e-> e.getKey()==id)
+                .map(Map.Entry::getValue)
+                .findFirst();
+        return group;
+    }
+
+    public static Group removeGroupByID(int id) {
+        return GROUPS.remove(id);
+    }
+
+    public static List<Group> findSubGroupsByParent(Group parent) {
+        List<Group> subGroups = GROUPS.entrySet().stream()
+                .filter(e -> e.getValue().equals(parent))
+                .map(Map.Entry::getValue)
+                .collect(Collectors.toList());
+        return subGroups;
+    }
+
+
+    public static void printAllGroups() {
+        GROUPS.entrySet().stream()
+                .forEach(e -> e.getValue().printContent());
+
+    }
+
 }

@@ -5,6 +5,7 @@ import model.enums.Complexity;
 import model.enums.Resolution;
 import storage.Storage;
 
+import java.util.Optional;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
@@ -47,7 +48,10 @@ public class ConsoleManager {
             }else if(isValidNumeric(id)){
                 groupID = Integer.parseInt(id);
                 if(groupID>0){
-                    parentGroup = Storage.getByID(groupID);
+                    Optional<Group> group = Storage.findGroupByID(groupID);
+                    if(group.isPresent()) {
+                        parentGroup = group.get();
+                    }
                     break;
                 } else System.out.println("Negative digit not allowed");
             }  else {
