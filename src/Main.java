@@ -4,6 +4,7 @@ import model.enums.Resolution;
 import storage.Storage;
 
 import java.util.List;
+import java.util.Optional;
 
 
 public class Main {
@@ -53,8 +54,8 @@ public class Main {
 
 
         //Testing Stream API methods in Storage
-        Item item = Storage.findItemByName("Visual1 in Forest");
-        System.out.println(item.getName());
+        Optional<Item> item = Storage.findItemByName("Visual1 in Forest");
+        item.ifPresent(e-> System.out.println("Item in Storage found : " + e.getName()));
         Storage.printAllGroups();
         Storage.printAllItems();
         List<Group> subs = Storage.findSubGroupsByParent(g1);

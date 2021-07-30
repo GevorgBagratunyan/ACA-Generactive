@@ -14,6 +14,7 @@ public class Storage {
     private static final Map<Integer, Item> ITEMS = new HashMap<>();
 
     private Storage() {
+
     }
 
     public static Group getByID(int id) {
@@ -24,8 +25,9 @@ public class Storage {
         GROUPS.put(group.getId(), group);
     }
 
-    public static void addItem(Item item) {
+    public static Item addItem(Item item) {
         ITEMS.put(item.getId(), item);
+        return ITEMS.get(item.getId());
     }
 
     public static int getNextGroupID() {
@@ -51,13 +53,24 @@ public class Storage {
     }
 
 
-    public static Item findItemByName(String name) {
+    public static Optional<Item> findItemByName(String name) {
         Optional<Item> item = ITEMS.entrySet().stream()
                 .filter(e -> e.getValue().getName().equals(name))
                 .map(Map.Entry::getValue)
                 .findFirst();
+        return item;
+    }
 
-        return item.orElse(null);
+    public static Optional<Item> findItemById(int id) {
+        Optional<Item> item = ITEMS.entrySet().stream()
+                .filter(e -> e.getValue().getId() == id)
+                .map(Map.Entry::getValue)
+                .findFirst();
+        return item;
+    }
+
+    public static Item removeById(int id) {
+        return ITEMS.remove(id);
     }
 
     public static Group findGroupByName(String name) {
@@ -79,14 +92,14 @@ public class Storage {
 
     public static List<Item> findHighestPricedItems() {
         double maxPrice = Double.MIN_VALUE;
-        for(Map.Entry<Integer, Item> pair: ITEMS.entrySet()){
-            if(pair.getValue().getBasePrice()>maxPrice){
-                maxPrice=pair.getValue().getBasePrice();
+        for (Map.Entry<Integer, Item> pair : ITEMS.entrySet()) {
+            if (pair.getValue().getBasePrice() > maxPrice) {
+                maxPrice = pair.getValue().getBasePrice();
             }
         }
         double finalMaxPrice = maxPrice;
         List<Item> items = ITEMS.entrySet().stream()
-                .filter(e->e.getValue().getBasePrice()==finalMaxPrice)
+                .filter(e -> e.getValue().getBasePrice() == finalMaxPrice)
                 .map(Map.Entry::getValue)
                 .collect(Collectors.toList());
         return items;
