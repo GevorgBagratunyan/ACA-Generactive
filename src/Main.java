@@ -62,7 +62,9 @@ public class Main {
         System.out.println("subgroups in g1 : ");
         subs.stream().forEach(e -> System.out.println(e.getName()));
         List<Item> maxPriceItems = Storage.findHighestPricedItems();
+        System.out.println(maxPriceItems);
         System.out.println("Printing highest price items : ");
-        maxPriceItems.stream().forEach(e -> System.out.println(e.getName()));
+//        maxPriceItems.stream().forEach(e -> System.out.println(e.getName()));
+
     }
 }

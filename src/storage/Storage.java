@@ -55,15 +55,15 @@ public class Storage {
     }
 
     public static List<Item> findHighestPricedItems() {
-        double maxPrice = Double.MIN_VALUE;
-        for (Map.Entry<Integer, Item> pair : ITEMS.entrySet()) {
-            if (pair.getValue().getBasePrice() > maxPrice) {
-                maxPrice = pair.getValue().getBasePrice();
-            }
-        }
-        double finalMaxPrice = maxPrice;
+
+        double max = ITEMS.entrySet().stream()
+                .max(Comparator.comparingDouble(el->el.getValue().getBasePrice()))
+                .get()
+                .getValue()
+                .getBasePrice();
+
         List<Item> items = ITEMS.entrySet().stream()
-                .filter(e -> e.getValue().getBasePrice() == finalMaxPrice)
+                .filter(e -> e.getValue().getBasePrice() == max)
                 .map(Map.Entry::getValue)
                 .collect(Collectors.toList());
         return items;
