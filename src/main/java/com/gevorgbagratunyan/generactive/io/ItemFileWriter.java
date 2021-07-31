@@ -31,15 +31,14 @@ public class ItemFileWriter {
 
         try {
             bw.write(id);
-            bw.write("\n");
+            bw.write(",");
             bw.write(base_price);
-            bw.write("\n");
+            bw.write(",");
             bw.write(name);
-            bw.write("\n");
+            bw.write(",");
             bw.write(image_url);
-            bw.write("\n");
+            bw.write(",");
             bw.write(group_id);
-            bw.write("\n");
             bw.close();
         } catch (IOException e) {
             e.getMessage();

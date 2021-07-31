@@ -2,6 +2,8 @@ package com.gevorgbagratunyan.generactive.io;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class ItemFileReader {
@@ -19,22 +21,13 @@ public class ItemFileReader {
     }
 
     public List<String> readItemFields() {
-        List<String> params = new ArrayList<>();
-        String line = null;
-        while(true){
-            try {
-                if ((line=br.readLine())==null)
-                    break;
-            } catch (IOException e) {
-                e.getMessage();
-            }
-            params.add(line);
-        }
+        String line =null;
         try {
-            br.close();
+           line = br.readLine();
         } catch (IOException e) {
-            e.printStackTrace();
+            e.getMessage();
         }
+        List<String> params = Arrays.asList(line.split(","));
         return params;
     }
 }
