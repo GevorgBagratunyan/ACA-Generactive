@@ -1,4 +1,4 @@
-package storage;
+package com.gevorgbagratunyan.generactive.storage;
 
 import java.util.Optional;
 

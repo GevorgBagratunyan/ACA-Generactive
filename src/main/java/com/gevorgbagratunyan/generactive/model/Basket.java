@@ -1,4 +1,4 @@
-package model;
+package com.gevorgbagratunyan.generactive.model;
 
 import java.util.ArrayList;
 import java.util.List;

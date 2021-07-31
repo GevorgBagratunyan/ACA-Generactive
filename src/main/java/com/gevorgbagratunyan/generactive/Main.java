@@ -1,11 +1,15 @@
-import model.*;
-import model.enums.Complexity;
-import model.enums.Resolution;
-import storage.Storage;
+package com.gevorgbagratunyan.generactive;
+
+import com.gevorgbagratunyan.generactive.io.ItemCreatorFromFile;
+import com.gevorgbagratunyan.generactive.io.ItemFileReader;
+import com.gevorgbagratunyan.generactive.io.ItemFileWriter;
+import com.gevorgbagratunyan.generactive.model.*;
+import com.gevorgbagratunyan.generactive.model.enums.Complexity;
+import com.gevorgbagratunyan.generactive.model.enums.Resolution;
+import com.gevorgbagratunyan.generactive.storage.Storage;
 
 import java.util.List;
 import java.util.Optional;
-
 
 public class Main {
     public static void main(String[] args) {
@@ -24,6 +28,7 @@ public class Main {
 
         GenerativeItem gi1 = new GenerativeItem.GenerativeItemBuilder()
                 .name("Visual1 in Forest")
+                .url("https://m.media-amazon.com/images/P/B0863V2HSX.01._SCLZZZZZZZ_SX500_.jpg")
                 .group(g2)
                 .id()
                 .price(25.0)
@@ -62,9 +67,16 @@ public class Main {
         System.out.println("subgroups in g1 : ");
         subs.stream().forEach(e -> System.out.println(e.getName()));
         List<Item> maxPriceItems = Storage.findHighestPricedItems();
-        System.out.println(maxPriceItems);
         System.out.println("Printing highest price items : ");
-//        maxPriceItems.stream().forEach(e -> System.out.println(e.getName()));
+        maxPriceItems.stream().forEach(e-> System.out.println(e.getBasePrice()));
 
+        //Testing Read-Write from .csv file
+        String filePath = "src\\main\\resources\\item.csv";
+        ItemFileWriter ifw = new ItemFileWriter(filePath);
+        ifw.writeItemFields(gi1);
+        ItemCreatorFromFile icr = new ItemCreatorFromFile(filePath);
+        Item it = icr.create();
+        System.out.println("Printing content of item created from .csv file");
+        it.printContent();
     }
 }

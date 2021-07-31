@@ -1,7 +1,6 @@
-package model;
+package com.gevorgbagratunyan.generactive.model;
 
-
-import storage.Storage;
+import com.gevorgbagratunyan.generactive.storage.Storage;
 
 import java.util.ArrayList;
 import java.util.List;

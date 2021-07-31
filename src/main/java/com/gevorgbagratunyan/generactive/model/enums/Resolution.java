@@ -1,4 +1,4 @@
-package model.enums;
+package com.gevorgbagratunyan.generactive.model.enums;
 
 public enum Resolution {
     HD(1.0),

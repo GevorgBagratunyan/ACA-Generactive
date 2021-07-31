@@ -1,9 +1,10 @@
-package util;
+package com.gevorgbagratunyan.generactive.util;
 
-import model.*;
-import model.enums.Complexity;
-import model.enums.Resolution;
-import storage.Storage;
+
+import com.gevorgbagratunyan.generactive.model.*;
+import com.gevorgbagratunyan.generactive.model.enums.Complexity;
+import com.gevorgbagratunyan.generactive.model.enums.Resolution;
+import com.gevorgbagratunyan.generactive.storage.Storage;
 
 public class ItemCreator {
 

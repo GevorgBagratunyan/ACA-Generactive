@@ -1,8 +1,8 @@
-package storage;
+package com.gevorgbagratunyan.generactive.storage;
 
 
-import model.Group;
-import model.Item;
+import com.gevorgbagratunyan.generactive.model.Group;
+import com.gevorgbagratunyan.generactive.model.Item;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -35,19 +35,16 @@ public class Storage {
 
 
     public static Optional<Item> findItemByName(String name) {
-        Optional<Item> item = ITEMS.entrySet().stream()
-                .filter(e -> e.getValue().getName().equals(name))
-                .map(Map.Entry::getValue)
+        return ITEMS.values().stream()
+                .filter(item -> item.getName().equals(name))
                 .findFirst();
-        return item;
     }
 
     public static Optional<Item> findItemById(int id) {
-        Optional<Item> item = ITEMS.entrySet().stream()
+        return ITEMS.entrySet().stream()
                 .filter(e -> e.getKey() == id)
                 .map(Map.Entry::getValue)
                 .findFirst();
-        return item;
     }
 
     public static Item removeItemById(int id) {
@@ -57,16 +54,14 @@ public class Storage {
     public static List<Item> findHighestPricedItems() {
 
         double max = ITEMS.entrySet().stream()
-                .max(Comparator.comparingDouble(el->el.getValue().getBasePrice()))
+                .max(Comparator.comparingDouble(el -> el.getValue().getBasePrice()))
                 .get()
                 .getValue()
                 .getBasePrice();
 
-        List<Item> items = ITEMS.entrySet().stream()
-                .filter(e -> e.getValue().getBasePrice() == max)
-                .map(Map.Entry::getValue)
+        return ITEMS.values().stream()
+                .filter(item -> item.getBasePrice() == max)
                 .collect(Collectors.toList());
-        return items;
     }
 
     //GROUP methods_____________________________________________________________
@@ -83,19 +78,16 @@ public class Storage {
     }
 
     public static Optional<Group> findGroupByName(String name) {
-        Optional<Group> group = GROUPS.entrySet().stream()
-                .filter(e -> e.getValue().getName().equals(name))
-                .map(Map.Entry::getValue)
+        return GROUPS.values().stream()
+                .filter(v -> v.getName().equals(name))
                 .findFirst();
-        return group;
     }
 
     public static Optional<Group> findGroupByID(int id) {
-        Optional<Group> group = GROUPS.entrySet().stream()
+        return GROUPS.entrySet().stream()
                 .filter(e -> e.getKey() == id)
                 .map(Map.Entry::getValue)
                 .findFirst();
-        return group;
     }
 
     public static Group removeGroupByID(int id) {
@@ -103,18 +95,14 @@ public class Storage {
     }
 
     public static List<Group> findSubGroupsByParent(Group parent) {
-        List<Group> subGroups = GROUPS.entrySet().stream()
-                .filter(e -> e.getValue().equals(parent))
-                .map(Map.Entry::getValue)
+        return GROUPS.values().stream()
+                .filter(group -> group.equals(parent))
                 .collect(Collectors.toList());
-        return subGroups;
     }
 
-
     public static void printAllGroups() {
-        GROUPS.entrySet().stream()
-                .forEach(e -> e.getValue().printContent());
-
+        GROUPS.values().stream()
+                .forEach(Group::printContent);
     }
 
 }

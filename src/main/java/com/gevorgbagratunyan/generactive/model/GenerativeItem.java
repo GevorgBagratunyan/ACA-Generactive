@@ -1,15 +1,15 @@
-package model;
+package com.gevorgbagratunyan.generactive.model;
 
 
-import model.enums.Complexity;
-import storage.Storage;
+import com.gevorgbagratunyan.generactive.model.enums.Complexity;
+import com.gevorgbagratunyan.generactive.storage.Storage;
 
 public class GenerativeItem extends Item {
 
     private final Complexity complexity;
 
     public GenerativeItem(GenerativeItemBuilder builder) {
-        super(builder.id, builder.name, builder.price, builder.group, builder.configuration);
+        super(builder.id, builder.name, builder.url, builder.price, builder.group);
         complexity = builder.complexity;
     }
 
@@ -24,6 +24,7 @@ public class GenerativeItem extends Item {
     public static class GenerativeItemBuilder {
         private int id;
         private String name;
+        private String url;
         private double price;
         private Group group;
         private Configuration configuration;
@@ -36,6 +37,11 @@ public class GenerativeItem extends Item {
 
         public GenerativeItemBuilder name(String name) {
             this.name = name;
+            return this;
+        }
+
+        public GenerativeItemBuilder url(String url) {
+            this.url = url;
             return this;
         }
 

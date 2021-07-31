@@ -1,4 +1,4 @@
-package model.enums;
+package com.gevorgbagratunyan.generactive.model.enums;
 
 public enum Complexity {
     ONE(1.0),

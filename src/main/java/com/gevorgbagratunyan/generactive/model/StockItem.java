@@ -1,12 +1,12 @@
-package model;
+package com.gevorgbagratunyan.generactive.model;
 
 
-import storage.Storage;
+import com.gevorgbagratunyan.generactive.storage.Storage;
 
 public class StockItem extends Item {
 
     public StockItem(StockItemBuilder builder) {
-        super(builder.id, builder.name, builder.price, builder.group, builder.configuration);
+        super(builder.id, builder.name,builder.url, builder.price, builder.group);
     }
 
     @Override
@@ -16,9 +16,11 @@ public class StockItem extends Item {
         return price * resolutionCoefficient;
     }
 
+
     public static class StockItemBuilder {
         private int id;
         private String name;
+        private String url;
         private double price;
         private Group group;
         private Configuration configuration;
@@ -30,6 +32,11 @@ public class StockItem extends Item {
 
         public StockItemBuilder name(String name) {
             this.name = name;
+            return this;
+        }
+
+        public StockItemBuilder url(String url) {
+            this.url = url;
             return this;
         }
 

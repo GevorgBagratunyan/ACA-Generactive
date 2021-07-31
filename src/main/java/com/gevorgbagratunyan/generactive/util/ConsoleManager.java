@@ -1,9 +1,9 @@
-package util;
+package com.gevorgbagratunyan.generactive.util;
 
-import model.Group;
-import model.enums.Complexity;
-import model.enums.Resolution;
-import storage.Storage;
+import com.gevorgbagratunyan.generactive.model.Group;
+import com.gevorgbagratunyan.generactive.model.enums.Complexity;
+import com.gevorgbagratunyan.generactive.model.enums.Resolution;
+import com.gevorgbagratunyan.generactive.storage.Storage;
 
 import java.util.Optional;
 import java.util.Scanner;
@@ -49,9 +49,7 @@ public class ConsoleManager {
                 groupID = Integer.parseInt(id);
                 if (groupID > 0) {
                     Optional<Group> group = Storage.findGroupByID(groupID);
-                    if (group.isPresent()) {
-                        parentGroup = group.get();
-                    }
+                    group.ifPresent(value -> parentGroup = value);
                     break;
                 } else System.out.println("Negative digit not allowed");
             } else {

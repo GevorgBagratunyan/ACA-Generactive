@@ -1,7 +1,7 @@
-package model;
+package com.gevorgbagratunyan.generactive.model;
 
 
-import model.enums.Resolution;
+import com.gevorgbagratunyan.generactive.model.enums.Resolution;
 
 public class Configuration {
 

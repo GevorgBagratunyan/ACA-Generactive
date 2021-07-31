@@ -1,4 +1,4 @@
-package model;
+package com.gevorgbagratunyan.generactive.model;
 
 
 public class BasketItem {

@@ -1,6 +1,7 @@
-package storage;
+package com.gevorgbagratunyan.generactive.storage;
 
-import model.Item;
+
+import com.gevorgbagratunyan.generactive.model.Item;
 
 import java.util.List;
 import java.util.Optional;
