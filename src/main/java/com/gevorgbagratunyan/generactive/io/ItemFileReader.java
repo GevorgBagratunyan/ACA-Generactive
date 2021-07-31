@@ -1,9 +1,7 @@
 package com.gevorgbagratunyan.generactive.io;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 public class ItemFileReader {
@@ -20,14 +18,13 @@ public class ItemFileReader {
         }
     }
 
-    public List<String> readItemFields() {
+    public List<String> readItemFields() throws NullPointerException{
         String line =null;
         try {
            line = br.readLine();
         } catch (IOException e) {
             e.getMessage();
         }
-        List<String> params = Arrays.asList(line.split(","));
-        return params;
+        return Arrays.asList(line.split(","));
     }
 }

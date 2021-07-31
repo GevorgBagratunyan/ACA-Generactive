@@ -1,7 +1,6 @@
 package com.gevorgbagratunyan.generactive;
 
 import com.gevorgbagratunyan.generactive.io.ItemCreatorFromFile;
-import com.gevorgbagratunyan.generactive.io.ItemFileReader;
 import com.gevorgbagratunyan.generactive.io.ItemFileWriter;
 import com.gevorgbagratunyan.generactive.model.*;
 import com.gevorgbagratunyan.generactive.model.enums.Complexity;
@@ -65,10 +64,10 @@ public class Main {
         Storage.printAllItems();
         List<Group> subs = Storage.findSubGroupsByParent(g1);
         System.out.println("subgroups in g1 : ");
-        subs.stream().forEach(e -> System.out.println(e.getName()));
+        subs.forEach(e -> System.out.println(e.getName()));
         List<Item> maxPriceItems = Storage.findHighestPricedItems();
         System.out.println("Printing highest price items : ");
-        maxPriceItems.stream().forEach(e-> System.out.println(e.getBasePrice()));
+        maxPriceItems.forEach(e-> System.out.println(e.getBasePrice()));
 
         //Testing Read-Write from .csv file
         String filePath = "src\\main\\resources\\item.csv";
