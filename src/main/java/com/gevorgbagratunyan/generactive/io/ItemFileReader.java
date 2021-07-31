@@ -19,12 +19,16 @@ public class ItemFileReader {
     }
 
     public List<String> readItemFields() throws NullPointerException{
-        String line =null;
         try {
-           line = br.readLine();
+            return Arrays.asList(br.readLine().split(","));
         } catch (IOException e) {
-            e.getMessage();
+            throw new RuntimeException("File reading problem");
+        } finally {
+            try {
+                br.close();
+            } catch (IOException e) {
+                System.out.println("Cant close Buffered reader");
+            }
         }
-        return Arrays.asList(line.split(","));
     }
 }

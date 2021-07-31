@@ -39,6 +39,7 @@ public class ItemFileWriter {
             bw.write(image_url);
             bw.write(",");
             bw.write(group_id);
+            bw.write("\n");
             bw.close();
         } catch (IOException e) {
             e.getMessage();
