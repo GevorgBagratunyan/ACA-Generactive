@@ -7,22 +7,34 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class ItemFileReader {
-
+public class GenReader {
     private BufferedReader br;
-    private final String filePath = "src\\main\\resources\\item.csv";
+    private String filePath;
+    private String itemFilePath = "src\\main\\resources\\item.csv";
 
-    public ItemFileReader() {
+    public GenReader() {
+        this.filePath = this.itemFilePath;
         File file = new File(filePath);
         try {
-            FileReader reader = new FileReader(file);
-            br = new BufferedReader(reader);
+            FileReader fr = new FileReader(file);
+            br = new BufferedReader(fr);
         } catch (FileNotFoundException e) {
             System.out.println("file Not found, wrong path");
         }
     }
 
-    public List<String> readItemFields() {
+    public GenReader(String filePath) {
+        this.filePath = filePath;
+        File file = new File(filePath);
+        try {
+            FileReader fr = new FileReader(file);
+            br = new BufferedReader(fr);
+        } catch (FileNotFoundException e) {
+            System.out.println("file Not found, wrong path");
+        }
+    }
+
+    public List<String> readObject() {
         try {
             String line;
             if((line=br.readLine()).isEmpty()){
@@ -40,11 +52,11 @@ public class ItemFileReader {
         }
     }
 
-    public List<String> readAllItemFields() {
+    public List<String> readAllObjects() {
         List<String> allLines = new ArrayList<>();
         try {
             String fields;
-            while((fields=br.readLine())!=null){
+            while((fields= br.readLine())!=null){
                 allLines.add(fields);
             }
         } catch (IOException e) {

@@ -8,14 +8,14 @@ import java.util.List;
 
 public class ItemCreatorFromFile {
 
-    private ItemFileReader reader;
+    private GenReader genReader;
 
     public ItemCreatorFromFile() {
-        this.reader = new ItemFileReader();
+        this.genReader = new GenReader();
     }
 
     public Item create() {
-        List<String> params = reader.readItemFields();
+        List<String> params = genReader.readObject();
         return new StockItem.StockItemBuilder()
                 .id()
                 .price(Double.parseDouble(params.get(1)))

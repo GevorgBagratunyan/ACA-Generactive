@@ -7,13 +7,11 @@ import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.stream.Stream;
 
-public class GenFileWriter {
+public class GenWriter {
 
     private BufferedWriter bw;
-    private final String filePath;
 
-    public GenFileWriter(String filePath) {
-        this.filePath = filePath;
+    public GenWriter(String filePath) {
         File file = new File(filePath);
         try {
             FileWriter writer = new FileWriter(file);
@@ -25,14 +23,17 @@ public class GenFileWriter {
 
     public <T> void writeObjectFields(T t) {
         Field[] fields = t.getClass().getDeclaredFields();
-            Stream.of(fields)
-                    .forEach(f -> {
-                        try {
-                            bw.write(f.getName() + ",");
-                            bw.write("\n");
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    });
+
+        Stream.of(fields)
+                .forEach(f -> f.setAccessible(true));
+        Stream.of(fields)
+                .forEach(f -> {
+                    try {
+                        bw.write(f.getName() + ",");
+                        bw.write("\n");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                });
     }
 }

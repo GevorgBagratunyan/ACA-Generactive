@@ -1,6 +1,7 @@
 package com.gevorgbagratunyan.generactive;
 
 import com.gevorgbagratunyan.generactive.exception.ExceptionHandler;
+import com.gevorgbagratunyan.generactive.io.GenWriter;
 import com.gevorgbagratunyan.generactive.io.ItemCreatorFromFile;
 import com.gevorgbagratunyan.generactive.io.ItemFileWriter;
 import com.gevorgbagratunyan.generactive.model.*;
@@ -73,8 +74,8 @@ public class Main {
         maxPriceItems.forEach(e-> System.out.println(e.getBasePrice()));
 
         //Testing Read-Write from .csv file
-//        ItemFileWriter ifw = new ItemFileWriter();
-//        ifw.writeItemFields(gi1);
+        ItemFileWriter ifw = new ItemFileWriter();
+        ifw.writeItemFields(gi1);
         ItemCreatorFromFile icr = new ItemCreatorFromFile();
         System.out.println("trying to create Item by reading from .csv file");
         Item it = icr.create();
