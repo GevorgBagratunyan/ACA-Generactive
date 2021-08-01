@@ -24,7 +24,11 @@ public class ItemFileReader {
 
     public List<String> readItemFields() {
         try {
-            return Arrays.asList(br.readLine().split(","));
+            String line;
+            if((line=br.readLine()).isEmpty()){
+                throw new FileIsEmptyException(filePath);
+            }
+            return Arrays.asList(line.split(","));
         } catch (IOException e) {
             throw new FileIsEmptyException(filePath, e);
         } finally {

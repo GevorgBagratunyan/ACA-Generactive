@@ -73,9 +73,10 @@ public class Main {
         maxPriceItems.forEach(e-> System.out.println(e.getBasePrice()));
 
         //Testing Read-Write from .csv file
-        ItemFileWriter ifw = new ItemFileWriter();
-        ifw.writeItemFields(gi1);
+//        ItemFileWriter ifw = new ItemFileWriter();
+//        ifw.writeItemFields(gi1);
         ItemCreatorFromFile icr = new ItemCreatorFromFile();
+        System.out.println("trying to create Item by reading from .csv file");
         Item it = icr.create();
         System.out.println("Printing content of item created from .csv file");
         it.printContent();
