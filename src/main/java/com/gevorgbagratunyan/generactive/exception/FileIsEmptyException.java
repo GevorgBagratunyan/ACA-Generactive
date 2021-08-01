@@ -12,4 +12,9 @@ public class FileIsEmptyException extends RuntimeException {
         super(String.format("File in path :  {%s}  - Is Empty", filePath));
         this.path = filePath;
     }
+
+    public FileIsEmptyException(String filePath, Throwable cause) {
+        super(String.format("File in path :  {%s}  - Is Empty", filePath), cause);
+        this.path = filePath;
+    }
 }

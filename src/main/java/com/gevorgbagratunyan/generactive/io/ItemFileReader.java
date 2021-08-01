@@ -3,6 +3,7 @@ package com.gevorgbagratunyan.generactive.io;
 import com.gevorgbagratunyan.generactive.exception.FileIsEmptyException;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -25,7 +26,7 @@ public class ItemFileReader {
         try {
             return Arrays.asList(br.readLine().split(","));
         } catch (IOException e) {
-            throw new FileIsEmptyException(filePath);
+            throw new FileIsEmptyException(filePath, e);
         } finally {
             try {
                 br.close();
@@ -33,5 +34,24 @@ public class ItemFileReader {
                 System.out.println("Cant close Buffered reader");
             }
         }
+    }
+
+    public List<String> readAllItemFields() {
+        List<String> allLines = new ArrayList<>();
+        try {
+            String fields;
+            while((fields=br.readLine())!=null){
+                allLines.add(fields);
+            }
+        } catch (IOException e) {
+            throw new FileIsEmptyException(filePath, e);
+        } finally {
+            try {
+                br.close();
+            } catch (IOException e) {
+                System.out.println("Cant close Buffered reader");
+            }
+        }
+        return allLines;
     }
 }
