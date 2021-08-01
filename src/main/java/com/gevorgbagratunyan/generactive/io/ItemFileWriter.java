@@ -10,8 +10,9 @@ import java.io.IOException;
 public class ItemFileWriter {
 
     private BufferedWriter bw;
+    private final String filePath = "src\\main\\resources\\item.csv";
 
-    public ItemFileWriter(String filePath) {
+    public ItemFileWriter() {
         File file = new File(filePath);
         try {
             FileWriter writer = new FileWriter(file);

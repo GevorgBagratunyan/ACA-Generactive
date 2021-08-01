@@ -1,5 +1,6 @@
 package com.gevorgbagratunyan.generactive;
 
+import com.gevorgbagratunyan.generactive.exception.ExceptionHandler;
 import com.gevorgbagratunyan.generactive.io.ItemCreatorFromFile;
 import com.gevorgbagratunyan.generactive.io.ItemFileWriter;
 import com.gevorgbagratunyan.generactive.model.*;
@@ -12,6 +13,8 @@ import java.util.Optional;
 
 public class Main {
     public static void main(String[] args) {
+        Thread.setDefaultUncaughtExceptionHandler(new ExceptionHandler());
+
         Group g1 = new Group.GroupBuilder()
                 .id()
                 .groupName("Nature")
@@ -70,10 +73,9 @@ public class Main {
         maxPriceItems.forEach(e-> System.out.println(e.getBasePrice()));
 
         //Testing Read-Write from .csv file
-        String filePath = "src\\main\\resources\\item.csv";
-        ItemFileWriter ifw = new ItemFileWriter(filePath);
+        ItemFileWriter ifw = new ItemFileWriter();
         ifw.writeItemFields(gi1);
-        ItemCreatorFromFile icr = new ItemCreatorFromFile(filePath);
+        ItemCreatorFromFile icr = new ItemCreatorFromFile();
         Item it = icr.create();
         System.out.println("Printing content of item created from .csv file");
         it.printContent();

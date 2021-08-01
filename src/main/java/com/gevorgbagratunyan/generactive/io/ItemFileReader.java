@@ -1,5 +1,7 @@
 package com.gevorgbagratunyan.generactive.io;
 
+import com.gevorgbagratunyan.generactive.exception.FileIsEmptyException;
+
 import java.io.*;
 import java.util.Arrays;
 import java.util.List;
@@ -7,8 +9,9 @@ import java.util.List;
 public class ItemFileReader {
 
     private BufferedReader br;
+    private final String filePath = "src\\main\\resources\\item.csv";
 
-    public ItemFileReader(String filePath) {
+    public ItemFileReader() {
         File file = new File(filePath);
         try {
             FileReader reader = new FileReader(file);
@@ -18,11 +21,11 @@ public class ItemFileReader {
         }
     }
 
-    public List<String> readItemFields() throws NullPointerException{
+    public List<String> readItemFields() {
         try {
             return Arrays.asList(br.readLine().split(","));
         } catch (IOException e) {
-            throw new RuntimeException("File reading problem");
+            throw new FileIsEmptyException(filePath);
         } finally {
             try {
                 br.close();

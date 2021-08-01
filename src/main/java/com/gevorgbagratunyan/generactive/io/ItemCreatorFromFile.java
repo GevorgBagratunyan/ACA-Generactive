@@ -10,8 +10,8 @@ public class ItemCreatorFromFile {
 
     private ItemFileReader reader;
 
-    public ItemCreatorFromFile(String filePath) {
-        this.reader = new ItemFileReader(filePath);
+    public ItemCreatorFromFile() {
+        this.reader = new ItemFileReader();
     }
 
     public Item create() {
