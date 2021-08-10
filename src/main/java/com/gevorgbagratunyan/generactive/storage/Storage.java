@@ -4,7 +4,6 @@ package com.gevorgbagratunyan.generactive.storage;
 import com.gevorgbagratunyan.generactive.model.Group;
 import com.gevorgbagratunyan.generactive.model.Item;
 
-import java.io.FileNotFoundException;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -78,7 +77,7 @@ public class Storage {
 
     }
 
-    public static Group findGroupByName(String name) throws NoSuchElementException {
+    public static Group findGroupByName(String name) {
         return GROUPS.values().stream()
                 .filter(v -> v.getName().equals(name))
                 .findFirst()
@@ -105,6 +104,11 @@ public class Storage {
     public static void printAllGroups() {
         GROUPS.values().stream()
                 .forEach(Group::printContent);
+    }
+
+    public static void clear() {
+        GROUPS.clear();
+        ITEMS.clear();
     }
 
 }
