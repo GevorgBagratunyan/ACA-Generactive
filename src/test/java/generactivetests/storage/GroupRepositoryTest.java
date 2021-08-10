@@ -16,7 +16,7 @@ public class GroupRepositoryTest {
 
     static GroupRepository repository = new GroupRepository();
     static Group group = new Group.GroupBuilder()
-            .id()
+            .id() // id = 1 for every test method
             .groupName("Nature")
             .build();
 
