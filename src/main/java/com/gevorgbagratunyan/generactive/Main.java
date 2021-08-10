@@ -1,7 +1,6 @@
 package com.gevorgbagratunyan.generactive;
 
 import com.gevorgbagratunyan.generactive.exception.ExceptionHandler;
-import com.gevorgbagratunyan.generactive.io.GenWriter;
 import com.gevorgbagratunyan.generactive.io.ItemCreatorFromFile;
 import com.gevorgbagratunyan.generactive.io.ItemFileWriter;
 import com.gevorgbagratunyan.generactive.model.*;

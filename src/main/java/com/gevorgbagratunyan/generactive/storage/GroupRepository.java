@@ -3,7 +3,9 @@ package com.gevorgbagratunyan.generactive.storage;
 
 import com.gevorgbagratunyan.generactive.model.Group;
 
+import java.io.FileNotFoundException;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 public class GroupRepository implements CRUD<Group> {
@@ -29,8 +31,9 @@ public class GroupRepository implements CRUD<Group> {
         return Storage.removeGroupByID(id);
     }
 
-    public Optional<Group> getByName(String name) {
-        return Storage.findGroupByName(name);
+    //In this method return is not Optional, for testing purposes
+    public Group getByName(String name) throws NoSuchElementException {
+            return Storage.findGroupByName(name);
     }
 
     public List<Group> getSubgroupsByParent(Group parent) {
