@@ -1,5 +1,7 @@
 package com.gevorgbagratunyan.generactive.model;
 
+import java.util.Objects;
+
 public abstract class Item {
     private final int id;
     private final String name;
@@ -35,6 +37,22 @@ public abstract class Item {
 
     public int getId() {
         return id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Item item = (Item) o;
+        return id == item.id &&
+                Objects.equals(name, item.name) &&
+                Objects.equals(url, item.url) &&
+                Objects.equals(group, item.group);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, url);
     }
 
     public void printContent() {

@@ -4,6 +4,8 @@ package com.gevorgbagratunyan.generactive.model;
 import com.gevorgbagratunyan.generactive.model.enums.Complexity;
 import com.gevorgbagratunyan.generactive.storage.Storage;
 
+import java.util.Objects;
+
 public class GenerativeItem extends Item {
 
     private final Complexity complexity;
@@ -19,6 +21,23 @@ public class GenerativeItem extends Item {
         double resolutionCoefficient = configuration.getResolution().getResolutionCoefficient();
         double comp = complexity.getValue();
         return price * resolutionCoefficient * comp;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        GenerativeItem that = (GenerativeItem) o;
+        if (!super.equals(o)) {
+            return false;
+        } else {
+            return complexity == that.complexity;
+        }
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), complexity);
     }
 
     public static class GenerativeItemBuilder {

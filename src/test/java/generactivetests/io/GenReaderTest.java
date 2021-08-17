@@ -4,6 +4,8 @@ import com.gevorgbagratunyan.generactive.exception.FileIsEmptyException;
 import com.gevorgbagratunyan.generactive.io.GenReader;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
 
 import java.util.List;
 
@@ -20,6 +22,18 @@ public class GenReaderTest {
     @DisplayName("Read Item fields From .csv")
     public void readObjectFromCSV() {
         assertNotNull(reader.readObject());
+    }
+
+    @ParameterizedTest
+    @CsvFileSource(resources = "/item.csv")
+    @DisplayName("Read Item fields using CSVFile source annotation")
+    public void readFromCsv(Integer id, Double base_price,
+                            String name, String image_url, Integer group_id) {
+        assertAll("Should compare and ensure that all is similar",
+                () -> assertEquals(1, id),
+                () -> assertEquals(25.0, base_price),
+                () -> assertEquals("https://m.media-amazon.com/images/P/B0863V2HSX.01._SCLZZZZZZZ_SX500_.jpg", image_url),
+                () -> assertEquals(2, group_id));
     }
 
     @Test
