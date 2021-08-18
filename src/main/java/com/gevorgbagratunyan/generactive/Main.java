@@ -13,7 +13,7 @@ import java.util.Optional;
 
 public class Main {
     public static void main(String[] args) {
-        //test 2
+
         Thread.setDefaultUncaughtExceptionHandler(new ExceptionHandler());
 
         Group g1 = new Group.GroupBuilder()
